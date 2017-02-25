@@ -1,3 +1,7 @@
+//this donut chart was created with help from the following tutorial:
+//D3.js Step by Step from Zero Viscosity
+//http://zeroviscosity.com/d3-js-step-by-step/step-0-intro
+
 let congressperson = {
   'id': 'S001141',
   'name': 'Jeff Sessions',
@@ -17,6 +21,7 @@ let dataset = [
 
 var width = 360;
 var height = 360;
+var donutHole = 75;
 
 //make the raidus the smaller of the the width and height divided by 2
 var radius = Math.min(width, height) / 2;
@@ -44,7 +49,7 @@ var svg = d3.select('#chart')
 
 //defines the raidus(size)
 var arc = d3.arc()
-  .innerRadius(0)
+  .innerRadius(radius - donutHole)
   .outerRadius(radius);
 
 //define the start and end angle of each segment
@@ -61,5 +66,3 @@ var path = svg.selectAll('path')
   .attr('fill', function(d, i) {
     return color(d.data.label);
   });
-
-module.exports
