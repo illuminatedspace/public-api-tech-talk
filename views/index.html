@@ -13,7 +13,7 @@
     <div class="col-lg-2 glyphicon glyphicon-check">
     </div>
     <div class="col-lg-6">
-      <h2>See Congress' voting attendance and voting tendancies.</h2>
+      <h2>See Congress' voting attendance and party loyality.</h2>
     </div>
   </div>
   <div class="row">
@@ -27,7 +27,7 @@
           </button>
           <ul class="dropdown-menu">
             {% for senator in senators %}
-              <li><a href="senate/member/{{senator.memberId}}">{{senator.name}} - {{senator.state}} - {{senator.party}}</a></li>
+              <li><a href="/senate/member/{{senator.memberId}}">{{senator.name}} - {{senator.state}} - {{senator.party}}</a></li>
             {% endfor %}
           </ul>
         </div>
@@ -40,7 +40,7 @@
           </button>
           <ul class="dropdown-menu">
             {% for rep in representatives %}
-              <li><a href="house/member/{{rep.memberId}}">{{rep.name}} - {{rep.state}} - {{rep.party}}</a></li>
+              <li><a href="/house/member/{{rep.memberId}}">{{rep.name}} - {{rep.state}} - {{rep.party}}</a></li>
             {% endfor %}
           </ul>
         </div>
