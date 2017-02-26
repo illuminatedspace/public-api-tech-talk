@@ -3,5 +3,49 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-
+<div id="home" class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1>Bicameral Report Card</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-2 glyphicon glyphicon-check">
+    </div>
+    <div class="col-lg-6">
+      <h2>See Congress' voting attendance and voting tendancies.</h2>
+    </div>
+  </div>
+  <div class="row">
+    <h2>Select a Senator or Representative to get started.</h2>
+    <div class="buttons">
+      <div class="col-lg-6 senate-button">
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle btn-block btn-lg" type="button" id="senator-dropdown" data-toggle="dropdown">
+            Senators
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            {% for senator in senators %}
+              <li><a href="senate/member/{{senator.memberId}}">{{senator.name}} - {{senator.state}} - {{senator.party}}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-6 house-button">
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle btn-block btn-lg" type="button" id="representative-dropdown" data-toggle="dropdown">
+            Representatives
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            {% for rep in representatives %}
+              <li><a href="house/member/{{rep.memberId}}">{{rep.name}} - {{rep.state}} - {{rep.party}}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

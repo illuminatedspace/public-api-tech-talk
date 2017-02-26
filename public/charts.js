@@ -20,7 +20,7 @@ let dataset = [
   { label: 'Present Votes', count: congressperson.total_votes - congressperson.missed_votes }
 ];
 
-//~~~~~~~~~~~~~~~~~~DONUT CHART
+//~~~~~~~~~~~~~~~~~~VARIABLES
 let width = 360;
 let height = 360;
 let donutHole = 75;
@@ -31,6 +31,11 @@ let radius = Math.min(width, height) / 2;
 //use a built in color palette from d3
 let color = d3.scaleOrdinal(d3.schemeCategory20b);
 
+//size of colored squares in legend
+let legendRectSize = 25;
+let legendSpacing = 4;
+
+//~~~~~~~~~~~~~~~~~~DONUT CHART
 //makes the svg chart
 //grab the element with the id chart
 let svg = d3.select('#attendance-chart')
@@ -71,9 +76,6 @@ let path = svg.selectAll('path')
 
 //~~~~~~~~~~~~~~~~~~LEGEND IN DONUT HOLE SPACE
 
-//size of colored squares
-let legendRectSize = 25;
-let legendSpacing = 4;
 
 //selects legend class
 let legend = svg.selectAll('.legend')

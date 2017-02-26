@@ -18,7 +18,27 @@ rect {
 
 
 /*~~~~~~~~~~~~~PAGE STYLE*/
-#app {
+#home {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+#home>.row {
+  margin: 50px inherit;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.glyphicon.glyphicon-check {
+  font-size: 150px;
+  margin-right: 50px;
+}
+
+.glyphicon-check {
+  /*justify-content: center;*/
 }
 
 #congressperson-name {
@@ -37,3 +57,11 @@ rect {
   justify-content: center;
 }
 
+.dropdown > ul {
+  width: 100%;
+}
+
+.dropdown-menu {
+  max-height: 250px;
+  overflow: auto;
+}
