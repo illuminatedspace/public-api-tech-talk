@@ -1,12 +1,39 @@
-.chart div {
-  font: 10px sans-serif;
-  background-color: steelblue;
-  text-align: right;
+/*~~~~~~~~~~~~~CHART STYLE!*/
+#attendance-chart, #party-chart {
+  font: 15px sans-serif;
+  text-align: center;
   padding: 3px;
   margin: 1px;
   color: white;
 }
 
-/*.container {
-  padding-top: 150px;
-}*/
+.legend {
+  font-size: 12px;
+}
+
+rect {
+  stroke-width: 2;
+}
+
+
+
+/*~~~~~~~~~~~~~PAGE STYLE*/
+#app {
+}
+
+#congressperson-name {
+
+}
+
+#charts {
+  width: 100%;
+  height: auto;
+  margin: auto;
+  display: flex;
+}
+
+.chart {
+  flex-grow: 1;
+  justify-content: center;
+}
+

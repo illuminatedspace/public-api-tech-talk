@@ -2,6 +2,7 @@
 //D3.js Step by Step from Zero Viscosity
 //http://zeroviscosity.com/d3-js-step-by-step/step-0-intro
 
+//~~~~~~~~~~~~~~~~~~DATA SET
 let congressperson = {
   'id': 'S001141',
   'name': 'Jeff Sessions',
@@ -15,23 +16,24 @@ let congressperson = {
 }
 
 let dataset = [
-  { label: 'missed', count: congressperson.missed_votes },
-  { label: 'present', count: congressperson.total_votes - congressperson.missed_votes }
+  { label: 'Missed Votes', count: congressperson.missed_votes },
+  { label: 'Present Votes', count: congressperson.total_votes - congressperson.missed_votes }
 ];
 
-var width = 360;
-var height = 360;
-var donutHole = 75;
+//~~~~~~~~~~~~~~~~~~DONUT CHART
+let width = 360;
+let height = 360;
+let donutHole = 75;
 
 //make the raidus the smaller of the the width and height divided by 2
-var radius = Math.min(width, height) / 2;
+let radius = Math.min(width, height) / 2;
 
 //use a built in color palette from d3
-var color = d3.scaleOrdinal(d3.schemeCategory20b);
+let color = d3.scaleOrdinal(d3.schemeCategory20b);
 
 //makes the svg chart
 //grab the element with the id chart
-var svg = d3.select('#chart')
+let svg = d3.select('#attendance-chart')
   //append an svg element to the chart element
   .append('svg')
 
@@ -48,17 +50,17 @@ var svg = d3.select('#chart')
   .attr('transform', 'translate(' + (width / 2) +  ',' + (height / 2) + ')');
 
 //defines the raidus(size)
-var arc = d3.arc()
+let arc = d3.arc()
   .innerRadius(radius - donutHole)
   .outerRadius(radius);
 
 //define the start and end angle of each segment
-var pie = d3.pie()
+let pie = d3.pie()
   .value(function(d) { return d.count; })
   .sort(null);
 
 //draws the chart
-var path = svg.selectAll('path')
+let path = svg.selectAll('path')
   .data(pie(dataset))
   .enter()
   .append('path')
@@ -66,3 +68,47 @@ var path = svg.selectAll('path')
   .attr('fill', function(d, i) {
     return color(d.data.label);
   });
+
+//~~~~~~~~~~~~~~~~~~LEGEND IN DONUT HOLE SPACE
+
+//size of colored squares
+let legendRectSize = 25;
+let legendSpacing = 4;
+
+//selects legend class
+let legend = svg.selectAll('.legend')
+  //call data with an array of lables defined from the data set
+  //color(d.data.label) created the array
+  .data(color.domain())
+  //creates placeholders
+  .enter()
+  //replace placeholders with g elements
+  .append('g')
+  //give each g the class 'legend'
+  .attr('class', 'legend')
+  //centers the legend, i is the index of the current data element, provide by D3
+  .attr('transform', function(d, i) {
+    //height of colored square + spacing
+    let height = legendRectSize + legendSpacing;
+    //vertical offset of entire legend, height of one element plus half total number of elements
+    let offset =  height * color.domain().length / 2;
+    //horizontal position of the left edge
+    let horz = -2 * legendRectSize;
+    //vertical position of the top edge
+    let vert = i * height - offset;
+    return 'translate(' + horz + ',' + vert + ')';
+  });
+
+//adds the colored square
+legend.append('rect')
+  .attr('width', legendRectSize)
+  .attr('height', legendRectSize)
+  .style('fill', color)
+  .style('stroke', color);
+
+//adds the text
+legend.append('text')
+  .attr('x', legendRectSize + legendSpacing)
+  .attr('y', legendRectSize - legendSpacing)
+  .text(function(d) { return d; });
+
