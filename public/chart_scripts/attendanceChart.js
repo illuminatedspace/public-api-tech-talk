@@ -3,7 +3,7 @@
 //http://zeroviscosity.com/d3-js-step-by-step/step-0-intro
 
 //~~~~~~~~~~~~~~~~~~DATA SET
-let congressperson = {
+/*let congressperson = {
   'id': 'S001141',
   'name': 'Jeff Sessions',
   'party': 'R',
@@ -13,12 +13,12 @@ let congressperson = {
   'missed_votes_pct': '65.00',
   'rank': '1',
   'notes': 'Resigned on Feb. 8, 2017 to become Attorney General.'
-}
+}*/
 
-let dataset = [
+/*let dataset = [
   { label: 'Missed Votes', count: congressperson.missed_votes },
   { label: 'Present Votes', count: congressperson.total_votes - congressperson.missed_votes }
-];
+];*/
 
 //~~~~~~~~~~~~~~~~~~VARIABLES
 let width = 360;
@@ -37,6 +37,8 @@ let legendSpacing = 4;
 
 //~~~~~~~~~~~~~~~~~~DONUT CHART
 //makes the svg chart
+
+//*refactor: can I export this as a function?
 //grab the element with the id chart
 let svg = d3.select('#attendance-chart')
   //append an svg element to the chart element
@@ -63,6 +65,13 @@ let arc = d3.arc()
 let pie = d3.pie()
   .value(function(d) { return d.count; })
   .sort(null);
+
+//gets the chart data from the chart_data directory
+d3.json('/chart_data/currentMissed.json', function(error, dataset) {
+  console.log(dataset);
+  dataset.forEach(function(d) {
+    d.count = +d.count;
+  });
 
 //draws the chart
 let path = svg.selectAll('path')
@@ -114,3 +123,4 @@ legend.append('text')
   .attr('y', legendRectSize - legendSpacing)
   .text(function(d) { return d; });
 
+});

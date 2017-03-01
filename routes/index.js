@@ -2,6 +2,7 @@ const router = require('express').Router();
 const axios = require('axios');
 //key is in an untracked file to keep it private
 const apiKey = require('../apiKey');
+const fs = require('fs');
 
 //homepage
 router.get('/', (req, res, next) => {
@@ -90,17 +91,32 @@ router.get('/:chamber/member/:memberId', (req, res, next) => {
     }, {
       label: 'Against Party', count: (100 - member.votes_with_party_pct).toFixed(2)
     }];
-    // res.send(member);
+  })
+  //write a json file for currentMissed
+  .then(() => {
+    return fs.writeFile('./chart_data/currentMissed.json', JSON.stringify(missedVotes));
+  })
+  //write a json file for currentParty
+  .then(() => {
+    return fs.writeFile('./chart_data/currentParty.json', JSON.stringify(partyVotes));
   })
   //render congressperson and pass the missed votes, party votes, and info
   .then(() => {
     res.render('congressperson', {
-      info: info,
-      missedVotes: missedVotes,
-      partyVotes: partyVotes
+      info: info
     })
   })
   .catch(next);
+})
+
+//routing for chart data
+router.get('/chart_data/currentMissed.json', (req, res, next) => {
+  res.sendFile('/chart_data/currentMissed.json', {root: '.'});
+})
+
+//routing for chart data
+router.get('/chart_data/currentParty.json', (req, res, next) => {
+  res.sendFile('/chart_data/currentParty.json', {root: '.'});
 })
 
 //simple routing for testing
