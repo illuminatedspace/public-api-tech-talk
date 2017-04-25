@@ -2,24 +2,6 @@
 //D3.js Step by Step from Zero Viscosity
 //http://zeroviscosity.com/d3-js-step-by-step/step-0-intro
 
-//~~~~~~~~~~~~~~~~~~DATA SET
-/*let congressperson = {
-  'id': 'S001141',
-  'name': 'Jeff Sessions',
-  'party': 'R',
-  'state': 'AL',
-  'total_votes': '60',
-  'missed_votes': '39',
-  'missed_votes_pct': '65.00',
-  'rank': '1',
-  'notes': 'Resigned on Feb. 8, 2017 to become Attorney General.'
-}*/
-
-/*let dataset = [
-  { label: 'Missed Votes', count: congressperson.missed_votes },
-  { label: 'Present Votes', count: congressperson.total_votes - congressperson.missed_votes }
-];*/
-
 //~~~~~~~~~~~~~~~~~~VARIABLES
 let width = 360;
 let height = 360;
@@ -68,7 +50,7 @@ let pie = d3.pie()
 
 //gets the chart data from the chart_data directory
 d3.json('/chart_data/currentMissed.json', function(error, dataset) {
-  console.log(dataset);
+  // console.log(dataset);
   dataset.forEach(function(d) {
     d.count = +d.count;
   });

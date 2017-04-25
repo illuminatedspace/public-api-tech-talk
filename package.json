@@ -17,5 +17,8 @@
     "morgan": "^1.8.1",
     "nunjucks": "^3.0.0",
     "path-is-absolute": "^1.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }

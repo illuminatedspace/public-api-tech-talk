@@ -1,10 +1,4 @@
 function chart (div, file) {
-//*chart call: everything that is changed for each chart, change to variable and call with nunjucks macro
-//nunjucks macro should be in a seperate template
-//https://mozilla.github.io/nunjucks/templating.html#import
-//and imported in
-//https://mozilla.github.io/nunjucks/templating.html#macro
-
 
 //this donut chart was created with help from the following tutorial:
 //D3.js Step by Step from Zero
@@ -50,6 +44,7 @@ function chart (div, file) {
   //makes the svg chart
 
   //*refactor: can I export this as a function?
+
   //grab the element with the id chart
   let svg = d3.select(`#${div}`)
     //append an svg element to the chart element

@@ -50,7 +50,7 @@ let pie2 = d3.pie()
 
 //gets the chart data from the chart_data directory
 d3.json('/chart_data/currentParty.json', function(error, dataset) {
-  console.log(dataset);
+  // console.log(dataset);
   dataset.forEach(function(d) {
     d.count = +d.count;
   });
